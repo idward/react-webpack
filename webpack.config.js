@@ -8,7 +8,8 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 var config = {
-    entry: [path.resolve(__dirname, 'src/main.js')],
+    entry: [path.resolve(__dirname, 'src/index.js')],
+    devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -21,10 +22,14 @@ var config = {
             {
                 test: /\.js|jsx$/,
                 exclude: /node_modules/,
-                loaders: 'babel-loader',
+                loader: 'babel-loader',
                 query: {
                     presets: ['es2015', 'react', 'stage-0']
                 }
+            },
+            {
+                test:/\.css$/,
+                loader:'style-loader!css-loader'
             }
         ]
     },
